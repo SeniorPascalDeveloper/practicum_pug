@@ -1,0 +1,17 @@
+extends template
+
+//- (Самостоятельное) вместо общего заголовка выводим название сооружения
+block header
+  header
+    h2= structures[0].menuItem
+
+block nav
+  nav
+    +createMenuBuild(dictMenu, structures[0].menuItem)
+
+block content
+  img.big(src=require("../images/" + structures[0].pict))
+
+  section.buildingText
+    p= structures[0].firstP
+    p= structures[0].secondP

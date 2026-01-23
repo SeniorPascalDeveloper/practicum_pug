@@ -1,0 +1,28 @@
+//- Меню для обычных страниц
+mixin createMenu(menu, active)
+  each value, key in menu
+    if active == key
+      a.active(href=value)= key
+    else
+      a(href=value)= key
+
+//- Меню для building: после "Главная" вставляем название сооружения и делаем active
+mixin createMenuBuild(menu, buildingTitle)
+  //- 1) Главная
+  a(href=menu['Главная']) Главная
+
+  //- 2) Текущая страница (сооружение)
+  a.active(href="building.html")= buildingTitle
+
+  //- 3) Остальные пункты меню
+  each value, key in menu
+    if key != 'Главная'
+      a(href=value)= key
+
+//- (Самостоятельное) карточка section как миксин
+mixin cardSection(item)
+  section
+    h3= item.header
+    img(src=require("../images/" + item.image))
+    p= item.text
+    a(href="#") &hellip;
